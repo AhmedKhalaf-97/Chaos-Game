@@ -3,6 +3,7 @@
 using namespace std;
 using namespace sf;
 
+// Instantiate rectangle shape to be drawn as a point.
 RectangleShape Point(float x, float y)
 {
     RectangleShape rectangle;
@@ -13,6 +14,7 @@ RectangleShape Point(float x, float y)
     return rectangle;
 }
 
+// Pick random vertex.
 Vector2f RandomVertexPosition(RectangleShape threeVertices[3])
 {
     int randomIndex = 0 + rand() % 3;
@@ -26,10 +28,13 @@ int main()
 
     Clock clock;
 
+    // Defines the rate of drawing in seconds. Decreasing this value will make the drawing process
+    // slower a little bit. But you will see many points drawn in realtime.
     float drawingRate = 1;
     float nextTimeToDraw = 0;
     double elapsedTime = 0;
 
+    // Keeps track of total number of drawn points.
     int pointsCount = 0;
 
     RenderWindow window(VideoMode(1024, 768), "Chaos Game", Style::Default);
@@ -56,8 +61,6 @@ int main()
             window.close();
         }
 
-        Vector2i position = Mouse::getPosition(window);
-
         Time deltaTime = clock.restart();
 
         Vector2f randomVertex = RandomVertexPosition(triangleVertices);
@@ -71,17 +74,19 @@ int main()
 
         pointsToDraw.push_back(previousPoint);
 
+        /********* Clear and Draw all points *****************/
         window.clear();
 
         window.draw(topVertex);
         window.draw(leftBottomVertex);
         window.draw(rightBottomVertex);
 
+        // Drawing a couple of thousands of points every specific amount of time will make the 
+        // drawing process more optimized.
         elapsedTime += 1 * deltaTime.asSeconds();
         if (elapsedTime >= nextTimeToDraw)
         {
             nextTimeToDraw = drawingRate + elapsedTime;
-
 
             for (int i = 0; i < pointsToDraw.size(); i++)
             {
