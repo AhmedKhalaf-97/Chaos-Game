@@ -18,7 +18,7 @@ int main()
     // Change this value if you want to change the window resolution, to adjust all text sizes.
     // For example, for large resolution like 1920px1080p, change this ratio to 2. But for smaller ones
     // like 800px600p or 1024px768p, change the ratio to 1 to appear smaller.
-    int sizeRatio = 1;
+    int sizeRatio = 2;
 
     RenderWindow window(VideoMode(screenRes_X, screenRes_Y), "Chaos Game", Style::Default);
 
@@ -45,13 +45,13 @@ int main()
     startGameButtonText.setFont(font);
 
     gameTitleText.setString("Chaos Game");
-    startGameButtonText.setString("Start New Game");
+    startGameButtonText.setString(">> Start New Game <<");
 
     gameTitleText.setCharacterSize(gameTitleTextCharSize);
     startGameButtonText.setCharacterSize(startGameTextCharSize);
 
     gameTitleText.setPosition(screenRes_X / 2.0f, 100.0f * sizeRatio);
-    startGameButtonText.setPosition(screenRes_X / 2.0f, 200.0f * sizeRatio);
+    startGameButtonText.setPosition(screenRes_X / 2.0f, 250.0f * sizeRatio);
 
     CenterTextRectOrigin(gameTitleText);
     CenterTextRectOrigin(startGameButtonText);
