@@ -17,7 +17,6 @@ RectangleShape Point(float x, float y)
 // Pick random vertex.
 Vector2f RandomVertexPosition(vector<RectangleShape> vertices)
 {
-    int size = vertices.size();
     int randomIndex = 0 + rand() % 3;
 
     return vertices[randomIndex].getPosition();
@@ -32,7 +31,7 @@ enum ShapeType
 
 int main()
 {
-    srand(time(NULL));
+    srand(time(0));
 
     Clock clock;
 
@@ -103,7 +102,7 @@ int main()
             }
             else
             {
-                if (starterPoint.getPosition() == Vector2f(NULL,NULL))
+                if (starterPoint.getPosition() == Vector2f(0, 0))
                 {
                     if (isLeftMouseButtonPressed)
                     {
@@ -135,7 +134,7 @@ int main()
         /**************** Clear and Draw all points ********************/
 
         // Draw all shape vertices.
-        if (starterPoint.getPosition() == Vector2f(NULL, NULL))
+        if (starterPoint.getPosition() == Vector2f(0, 0))
         {
             window.clear();
             for (RectangleShape vertex : shapeVertices)
@@ -160,7 +159,7 @@ int main()
                 window.draw(vertex);
             }
 
-            for (int i = 0; i < pointsToDraw.size(); i++)
+            for (int i = 0; i < (int)pointsToDraw.size(); i++)
             {
                 window.draw(pointsToDraw[i]);
                 pointsCount++;
